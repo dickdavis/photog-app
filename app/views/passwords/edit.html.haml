@@ -1,0 +1,14 @@
+.container
+  .row.justify-content-center.mt-2
+    #clearance.sign_in.col-xs-12.col-md-8
+      .card
+        .card-block
+          = form_for :password_reset,
+                url: user_password_path(@user, token: @user.confirmation_token),
+                html: { method: :put } do |form|
+            .form-group.row
+              = form.label :password, class: 'form-row col-sm-3'
+              .col-sm-9
+                = form.password_field :password, class: 'form-control form-label'
+            .text-center
+              = form.submit class: 'btn btn-primary'

@@ -1,0 +1,23 @@
+.container
+  .row{ class: 'justify-content-center mt-2' }
+    %div{ id: 'clearance', class: 'sign-in col-xs-12 col-md-8' }
+      .card
+        .card-body
+          = form_for :session, url: session_path do |form|
+            .form-group.row
+              = form.label :email, class: 'col-sm-3 col-form-label'
+              .col-sm-9
+                = form.text_field :email, type: 'email', class: 'form-control'
+            .form-group.row
+              = form.label :password, class: 'col-sm-3 col-form-label'
+              .col-sm-9
+                = form.password_field :password, class: 'form-control'
+            .text-center
+              = form.submit class: 'btn btn-primary'
+        .card-footer
+          - if Clearance.configuration.allow_sign_up?
+            %p.card-text.text-muted
+              Don't have an account yet?
+              = link_to t('.sign_up'), sign_up_path
+            %p.card-text
+              = link_to t('.forgot_password'), new_password_path

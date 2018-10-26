@@ -1,0 +1,17 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  %a.navbar-brand{ href: '#' } Navbar
+  %button.navbar-toggler{ type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbarNavDropdown', 'aria-controls': 'navbarNavDropdown', 'aria-expanded': false, 'aria-label': 'Toggle Navigation' }
+    %span.navbar-toggler-icon
+  .collapse.navbar-collapse#navbarNavDropdown
+    .container
+      %ul.navbar-nav.justify-content-center
+        - if signed_in?
+          %li.nav-item
+            = link_to 'Dashboard', dashboard_path, class: 'nav-link text-center'
+          %li.nav-item
+            = link_to 'Sign Out', sign_out_path, method: :delete, class: 'nav-link text-center'
+        - else
+          %li.nav-item
+            = link_to 'Home', root_path, class: 'nav-link text-center'
+          %li.nav-item
+            = link_to 'Sign In', sign_in_path, class: 'nav-link text-center'
