@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # = PackageGroupsController
 # Author::    Richard Davis
@@ -29,56 +31,31 @@ class PackageGroupsController < ApplicationController
 
   ##
   # POST /package_groups
-  #
-  # POST /package_groups.json
   def create
     @package_group = PackageGroup.create(package_group_params)
 
-    respond_to do |format|
-      if @package_group.save
-        flash[:type] = 'success'
-        flash[:message] = 'Package group was successfully created.'
-        format.html { redirect_to package_groups_path }
-        format.json { render :show, status: :created, location: package_groups_path }
-      else
-        @errors = @package_group.errors.full_messages
-        format.html { render :new }
-        format.json { render json: @package_group.errors, status: :unprocessable_entity }
-      end
+    if @package_group.save
+      redirect_to package_groups_path, notice: t('notices.package_group.create')
+    else
+      redirect_to new_package_group_path, alert: @package_group.errors.full_messages
     end
   end
 
   ##
   # PATCH/PUT /package_groups/:package_group_id
-  #
-  # PATCH/PUT /package_groups/:package_group_id.json
   def update
-    respond_to do |format|
-      if @package_group.update(package_group_params)
-        flash[:type] = 'success'
-        flash[:message] = 'Package group was successfully updated.'
-        format.html { redirect_to package_groups_path }
-        format.json { render :show, status: :ok, location: package_groups_path }
-      else
-        @errors = @package_group.errors.full_messages
-        format.html { render :edit }
-        format.json { render json: @package_group.errors, status: :unprocessable_entity }
-      end
+    if @package_group.update(package_group_params)
+      redirect_to package_groups_path, notice: t('notices.package_group.update')
+    else
+      redirect_to edit_package_group_path(@package_group), alert: @package_group.errors.full_messages
     end
   end
 
   ##
   # DELETE /package_groups/:package_group_id
-  #
-  # DELETE /package_groups/:package_group_id.json
   def destroy
     @package_group.destroy
-    respond_to do |format|
-      flash[:type] = 'success'
-      flash[:message] = 'Package group was successfully deleted.'
-      format.html { redirect_to package_groups_path }
-      format.json { head :no_content }
-    end
+    redirect_to package_groups_path, notice: t('notices.package_group.destroy')
   end
 
   private

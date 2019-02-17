@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # = ClientsController
 # Author::    Richard Davis
@@ -11,8 +13,6 @@ class ClientsController < ApplicationController
 
   ##
   # GET /clients
-  #
-  # GET /clients.json
   def index
     @clients = if params[:search]
                  Client.search(params[:search]).order('created_at DESC')
@@ -23,8 +23,6 @@ class ClientsController < ApplicationController
 
   ##
   # GET /clients/:client_id
-  #
-  # GET /clients/:client_id.json
   def show; end
 
   ##
@@ -39,56 +37,31 @@ class ClientsController < ApplicationController
 
   ##
   # POST /clients
-  #
-  # POST /clients.json
   def create
     @client = Client.create(client_params)
 
-    respond_to do |format|
-      if @client.save
-        flash[:type] = 'success'
-        flash[:message] = 'Client was successfully created.'
-        format.html { redirect_to client_path(@client) }
-        format.json { render :show, status: :created, location: client_path(@client) }
-      else
-        @errors = @client.errors.full_messages
-        format.html { render :new }
-        format.json { render json: @client.errors, status: :unprocessable_entity }
-      end
+    if @client.save
+      redirect_to client_path(@client), notice: t('notices.client.create')
+    else
+      redirect_to new_client_path, alert: @client.errors.full_messages
     end
   end
 
   ##
   # PATCH/PUT /clients/:client_id
-  #
-  # PATCH/PUT /clients/:client_id.json
   def update
-    respond_to do |format|
-      if @client.update(client_params)
-        flash[:type] = 'success'
-        flash[:message] = 'Client was successfully updated.'
-        format.html { redirect_to client_path(@client) }
-        format.json { render :show, status: :ok, location: client_path(@client) }
-      else
-        @errors = @client.errors.full_messages
-        format.html { render :edit }
-        format.json { render json: @client.errors, status: :unprocessable_entity }
-      end
+    if @client.update(client_params)
+      redirect_to client_path(@client), notice: t('notices.client.update')
+    else
+      redirect_to edit_client_path(@client), alert: @client.errors.full_messages
     end
   end
 
   ##
   # DELETE /clients/:client_id
-  #
-  # DELETE /clients/:client_id.json
   def destroy
     @client.destroy
-    respond_to do |format|
-      flash[:type] = 'success'
-      flash[:message] = 'Client was successfully deleted.'
-      format.html { redirect_to clients_path }
-      format.json { head :no_content }
-    end
+    redirect_to clients_path, notice: t('notices.client.destroy')
   end
 
   private

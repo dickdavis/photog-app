@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # = routes.rb
 # Author::    Mushaka Solutions
@@ -31,17 +33,27 @@ Rails.application.routes.draw do
   # Application route for dashboard
   get 'dashboard', to: 'dashboard#show', as: :dashboard
 
+  # Application routes for bookings
+  resources :bookings, only: %i[index show new create edit update destroy]
+
   # Application routes for clients
   resources :clients, only: %i[index show new create edit update destroy]
-
-  # Application route for dashboard
-  get 'pricing', to: 'public#pricing', as: :pricing
 
   # Application routes for package groups
   resources :package_groups, only: %i[index new create edit update destroy] do
     # Application routes for packages
     resources :packages, only: %i[new create show edit update destroy]
   end
+
+  # Application routes for booking requests
+  resources :booking_requests, only: %i[new show create edit update destroy] do
+    member do
+      post 'confirm'
+    end
+  end
+
+  # Application route for public pricing
+  get 'pricing', to: 'public#pricing', as: :pricing
 
   # The root application route
   root 'public#index'

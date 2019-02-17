@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # = UsersController
 # Author::    Richard Davis
@@ -35,17 +37,12 @@ class UsersController < Clearance::UsersController
   # POST /users
   def create
     @user = User.create(user_params)
-    respond_to do |format|
-      if @user.save
-        sign_in @user
-        flash[:message] = 'Account creation successful.'
-        flash[:type] = 'success'
-        format.html { redirect_to url_after_create }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+
+    if @user.save
+      sign_in @user
+      redirect_to url_after_create, notice: t('notices.user.create')
+    else
+      redirect_to new_user_path, alert: @user.errors.full_messages
     end
   end
 
@@ -54,16 +51,10 @@ class UsersController < Clearance::UsersController
   #
   # PATCH/PUT /users/:user_id.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        flash[:message] = 'User information was successfully updated.'
-        flash[:type] = 'success'
-        format.html { redirect_to @user }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: t('notices.user.update')
+    else
+      redirect_to edit_user_path, alert: @user.errors.full_messages
     end
   end
 

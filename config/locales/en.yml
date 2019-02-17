@@ -1,33 +1,44 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  navigation:
+    auth:
+      dashboard: "Dashboard"
+      bookings: "Bookings"
+      clients: "Clients"
+      sign_out: "Sign Out"
+    public:
+      home: "Home"
+      packages: "Pricing"
+      book_now: "Book Now"
+      sign_in: "Sign In"
+  alerts:
+    booking:
+      create: "Unable to save booking in database."
+    booking_package:
+      create: "Unable to save booking package in database."
+    client:
+      create: "Unable to save client in database."
+  notices:
+    booking:
+      create: "Booking was successfully created."
+      update: "Booking was successfully updated."
+      destroy: "Booking was successfully deleted."
+    booking_request:
+      create: "Your booking request has been submitted! We will be in contact soon."
+      update: "Booking request was successfully updated."
+      destroy: "Booking request was successfully deleted."
+      confirm: "Booking request successfully approved."
+    client:
+      create: "Client was successfully created."
+      update: "Client was successfully updated."
+      destroy: "Client was successfully deleted."
+    package:
+      create: "Package was successfully created."
+      update: "Package was successfully updated."
+      destroy: "Package was successfully deleted."
+    package_group:
+      create: "Package group was successfully created."
+      update: "Package group was successfully updated."
+      destroy: "Package group was successfully deleted."
+    user:
+      create: "Your account was successfully created."
+      update: "User information was successfully updated."

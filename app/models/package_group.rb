@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # = PackageGroup
 # Author::    Richard Davis
@@ -9,5 +11,7 @@
 # Package group and package resources share a nested, one-to-many relationship.
 class PackageGroup < ApplicationRecord
   has_many :packages
+
   validates :name, presence: true, length: { maximum: 75 }
+  validates :description, length: { maximum: 256 }
 end

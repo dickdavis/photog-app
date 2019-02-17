@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # = DashboardController
 # Author::    Richard Davis
@@ -11,7 +13,9 @@ class DashboardController < ApplicationController
 
   ##
   # GET /dashboard
-  def show; end
+  def show
+    @booking_requests = BookingRequest.all
+  end
 
   private
 

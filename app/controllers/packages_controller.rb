@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # = PackagesController
 # Author::    Richard Davis
@@ -28,55 +30,31 @@ class PackagesController < ApplicationController
 
   ##
   # POST /package_groups/:package_group_id/packages
-  #
-  # POST /package_groups/:package_group_id/packages.json
   def create
     @package = @package_group.packages.create(package_params)
 
-    respond_to do |format|
-      if @package.save
-        flash[:type] = 'success'
-        flash[:message] = 'Package was successfully created.'
-        format.html { redirect_to package_group_package_path(@package_group, @package) }
-        format.json { render :show, status: :created, location: package_group_package_path(@package_group, @package) }
-      else
-        @errors = @package.errors.full_messages
-        format.html { render :new }
-        format.json { render json: @package.errors, status: :unprocessable_entity }
-      end
+    if @package.save
+      redirect_to package_group_package_path(@package_group, @package), notice: t('notices.package.create')
+    else
+      redirect_to new_package_group_package_path(@package_group, @package), alert: @package.errors.full_messages
     end
   end
 
   ##
   # PATCH/PUT /package_groups/:package_group_id/packages/:package_id
-  #
-  # PATCH/PUT /package_groups/:package_group_id/packages/:package_id.json
   def update
-    respond_to do |format|
-      if @package.update(package_params)
-        flash[:type] = 'success'
-        flash[:message] = 'Package was successfully updated.'
-        format.html { redirect_to package_group_package_path(@package_group, @package) }
-        format.json { render :show, status: :ok, location: package_group_package_path(@package_group, @package) }
-      else
-        @errors = @package.errors.full_messages
-        format.html { render :edit }
-        format.json { render json: @package.errors, status: :unprocessable_entity }
-      end
+    if @package.update(package_params)
+      redirect_to package_group_package_path(@package_group, @package), notice: t('notices.package.update')
+    else
+      redirect_to edit_package_group_package_path(@package_group, @package), alert: @package.errors.full_messages
     end
   end
 
   ##
   # DELETE /package_groups/:package_group_id/packages/:package_id
-  #
-  # DELETE /package_groups/:package_group_id/packages/:package_id.json
   def destroy
     @package.destroy
-    respond_to do |format|
-      flash[:success] = 'Package was successfully deleted.'
-      format.html { redirect_to package_groups_path }
-      format.json { head :no_content }
-    end
+    redirect_to package_groups_path, notice: t('notices.package.destroy')
   end
 
   private

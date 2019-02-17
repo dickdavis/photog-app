@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # = Package
 # Author::    Richard Davis
@@ -11,8 +13,9 @@ class Package < ApplicationRecord
   belongs_to :package_group
 
   validates :name, presence: true
+  validates :description, presence: true, length: { maximum: 256 }
+  validates :retainer_fee, presence: true
   validates :total_cost, presence: true
   validates :duration, presence: true
-  validates :description, presence: true, length: { maximum: 256 }
   validates :package_group_id, presence: true
 end

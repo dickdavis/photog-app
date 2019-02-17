@@ -1,0 +1,39 @@
+.container
+  .row.justify-content-center
+    .col-md-8
+      .card.mt-4
+        .card-body
+          .text-left
+            .btn-group
+              = button_to 'Bookings', bookings_path, method: 'get', class: 'btn btn-outline-primary btn-lg'
+              = button_to 'Edit Booking',edit_booking_path(@booking), method: 'get', class: 'btn btn-primary btn-lg'
+          %hr
+          %h3.card-title.text-center= @booking.name
+          %hr
+          %h4.card-title Client Information
+          %p.card-text
+            %span= link_to "#{@booking.client.first_name} #{@booking.client.last_name}", client_path(@booking.client)
+          %p.card-text
+            %span.text-muted Email:
+            = @booking.client.email
+          %p.card-text
+            %span.text-muted Phone:
+            = @booking.client.phone_number
+          %hr
+          %h4.card-title Booking Details
+          %p.card-text
+            %span.text-muted Package:
+            = @booking.booking_package.name
+          %p.card-text
+            %span.text-muted Scheduled date:
+            = format_datetime(@booking.start_time)
+          %p.card-text
+            %span.text-muted Duration:
+            = @booking.booking_package.duration
+            %span.text-muted mins
+          %p.card-text
+            %span.text-muted Total cost:
+            = number_to_currency(@booking.booking_package.total_cost)
+          %p.card-text
+            %span.text-muted Retainer fee:
+            = number_to_currency(@booking.booking_package.retainer_fee)
