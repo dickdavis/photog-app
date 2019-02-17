@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # = SessionsController
 # Author::    Richard Davis
@@ -8,10 +10,7 @@
 class SessionsController < Clearance::SessionsController
   ##
   # GET /session/new
-  def new
-    @page_title = 'Sign In'
-    render layout: 'landing'
-  end
+  def new; end
 
   ##
   # GET /sign_in
@@ -22,9 +21,7 @@ class SessionsController < Clearance::SessionsController
       if status.success?
         redirect_to dashboard_path
       else
-        flash[:message] = status.failure_message
-        flash[:type] = 'danger'
-        redirect_to sign_in_path
+        redirect_to sign_in_path, alert: status.failure_message
       end
     end
   end

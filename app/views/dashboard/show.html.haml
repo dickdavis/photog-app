@@ -1,0 +1,54 @@
+.jumbotron
+  %h1.text-center Booking Requests
+.container-fluid
+  - if @booking_requests.count > 0
+    .grid
+      .grid-sizer
+        - @booking_requests.each do |br|
+          .card
+            .card-body
+              %h3.card-title.text-center= format_datetime(br.requested_date)
+              %hr
+              %h4.card-title Client Information
+              %p.card-text= "#{br.first_name} #{br.last_name}"
+              %p.card-text
+                %span.text-muted Email:
+                = br.email
+              %p.card-text
+                %span.text-muted Phone:
+                = br.phone_number
+              %hr
+              %h4.card-title Package Information
+              %p.card-text
+                %span.text-muted Package:
+                = br.package.name
+              %p.card-text
+                %span.text-muted Total Cost:
+                = number_to_currency(br.package.total_cost)
+              %p.card-text
+                %span.text-muted Retainer Fee:
+                = number_to_currency(br.package.retainer_fee)
+              .text-center
+                .btn-group.btn-group-lg{ role: 'group' }
+                  = button_to confirm_booking_request_path(br), class: 'btn btn-success btn-lg mt-2', method: 'post'  do
+                    %i{ class: 'fa fa-check' }
+                    \Confirm
+                  = button_to booking_request_path(br), class: 'btn btn-danger btn-lg mt-2', method: 'delete', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Delete this booking request', data: { confirm: 'Are you sure?' } do
+                    %i{ class: 'fa fa-times' }
+                    \Delete
+  - else
+    .row.justify-content-center
+      .col-md-6
+        .text-center
+          .alert.alert-info There are currently no booking requests for review.
+:javascript
+  document.addEventListener('turbolinks:load', function() {
+    let grid = document.querySelector('.grid');
+
+    let msnry = new Masonry( grid, {
+      itemSelector: '.grid-item',
+      columnWidth: '.grid-sizer',
+      percentPosition: true,
+      gutter: 10
+    });
+  }, false);

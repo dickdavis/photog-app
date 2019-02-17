@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # = Client
 # Author::    Richard Davis
@@ -6,6 +8,8 @@
 #
 # This controller provides validations and methods for the client model.
 class Client < ApplicationRecord
+  has_many :bookings, dependent: :destroy
+
   validates :first_name, presence: true, length: { maximum: 50 }
   validates :last_name, presence: true, length: { maximum: 50 }
   validates :email, presence: true

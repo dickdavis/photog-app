@@ -7,17 +7,21 @@
       %ul.navbar-nav.justify-content-center
         - if signed_in?
           %li.nav-item
-            = link_to 'Dashboard', dashboard_path, class: 'nav-link text-center'
+            = link_to t('navigation.auth.dashboard'), dashboard_path, class: 'nav-link text-center'
           %li.nav-item
-            = link_to 'Clients', clients_path, class: 'nav-link text-center'
+            = link_to t('navigation.auth.bookings'), bookings_path, class: 'nav-link text-center'
           %li.nav-item
-            = link_to 'Pricing', package_groups_path, class: 'nav-link text-center'
+            = link_to t('navigation.auth.clients'), clients_path, class: 'nav-link text-center'
           %li.nav-item
-            = link_to 'Sign Out', sign_out_path, method: :delete, class: 'nav-link text-center'
+            = link_to t('navigation.auth.pricing'), package_groups_path, class: 'nav-link text-center'
+          %li.nav-item
+            = link_to t('navigation.auth.sign_out'), sign_out_path, method: :delete, class: 'nav-link text-center'
         - else
           %li.nav-item
-            = link_to 'Home', root_path, class: 'nav-link text-center'
+            = link_to t('navigation.public.home'), root_path, class: 'nav-link text-center'
           %li.nav-item
-            = link_to 'Pricing', pricing_path, class: 'nav-link text-center'
+            = link_to t('navigation.public.packages'), pricing_path, class: 'nav-link text-center'
           %li.nav-item
-            = link_to 'Sign In', sign_in_path, class: 'nav-link text-center'
+            = link_to t('navigation.public.book_now'), new_booking_request_path, class: 'nav-link text-center'
+          %li.nav-item
+            = link_to t('navigation.public.sign_in'), sign_in_path, class: 'nav-link text-center'

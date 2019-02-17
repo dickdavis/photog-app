@@ -1,0 +1,16 @@
+= form_for @booking do |f|
+  .form-group.row
+    = f.label :client, class: 'col-sm-3 col-form-label'
+    .col-sm-9
+      = f.collection_select :client_id, Client.all, :id, ->(client){"#{client.first_name} #{client.last_name}"}, class: 'form-control'
+      %small{ id: 'clientHelp', class: 'form-text text-muted' }
+        = link_to 'Client not listed?', new_client_path
+  .form-group.row
+    = f.label :package, class: 'col-sm-3 col-form-label'
+    .col-sm-9
+      = f.collection_select :booking_package, format_packages(PackageGroup.all), :id, ->(package){"#{package.name} | #{number_to_currency(package.total_cost, unit: '$')}"}, class: 'form-control'
+      %small{ id: 'packageHelp', class: 'form-text text-muted' }
+        = link_to 'Package not listed?', package_groups_path
+  .actions
+    .text-center
+      = f.submit 'Save', id: 'client-submit', class: 'btn btn-lg btn-primary'

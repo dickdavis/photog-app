@@ -33,7 +33,7 @@
               %span.text-muted Phone:
               = client.phone_number
           .card-footer
-            =link_to 'Bookings', '#'
+            =link_to 'Bookings', bookings_path(params: { client_id: client })
   - elsif @clients.count == 0 && params[:search]
     .row.justify-content-center
       .col-md-6
