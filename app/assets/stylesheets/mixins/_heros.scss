@@ -1,0 +1,24 @@
+@mixin hero-regular {
+  @include margin(null null 12px null);
+  @include padding($base-spacing);
+  text-align: center;
+
+  @media screen and (min-width: $M) {
+    @include padding($super-spacing);
+  }
+
+  &__heading, &__lead {
+  }
+
+  &__heading {
+    font-size: 300%;
+  }
+
+  &__button_solid {
+    @include button-solid(map-get($theme-colors, primary), white);
+  }
+
+  &__button_outline {
+    @include button-outline(map-get($theme-colors, primary));
+  }
+}

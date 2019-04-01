@@ -15,20 +15,20 @@ gem 'pg', '~> 1.0'
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-# Use Bootstrap for style framework
-gem 'bootstrap', '~> 4.1.3'
-# Bootstrap requires jquery
-gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+# Use normalize for CSS resets
+gem 'rails-assets-normalize-css', source: 'https://rails-assets.org'
+# Use Bourbon for CSS
+gem 'bourbon', '~> 5.1'
+# Use Neat for CSS Grid
+gem 'neat', '~> 3.0', '>= 3.0.1'
+# Use autoprefixer to handle vendor prefixes
+gem 'autoprefixer-rails', '~> 9.4', '>= 9.4.7'
 # Use Font Awesome for iconography
 gem 'font-awesome-sass', '~> 4.7'
 # Use HAML instead of ERB
 gem 'haml-rails', '~> 1.0'
-# Use RedCarpet for markdown
-gem 'redcarpet', '~> 3.4'
-# Use CodeRay for syntax highlighting
-gem 'coderay', '~> 1.1', '>= 1.1.2'
 # Use clearance for authentication
 gem 'clearance', '~> 1.16', '>= 1.16.1'
 # Turbolinks makes navigating your web application faster.
@@ -73,7 +73,7 @@ group :test do
   # Use faker to generate test data
   gem 'faker', '~> 1.9', '>= 1.9.1'
   # Improved validations for testing
-  gem 'shoulda-matchers', '~> 4.0'
+  gem 'shoulda-matchers', '~> 4.0', '>= 4.0.1'
   # Reset database to clean state for testing
   gem 'database_cleaner', '~> 1.7'
 end

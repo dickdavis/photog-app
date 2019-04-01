@@ -1,18 +1,17 @@
-.container
-  .row.justify-content-center
-    .col-md-8
-      .card.mt-4
-        .card-body
-          .text-left
-            .btn-group
-              = button_to 'Client Index', clients_path, method: 'get', class: 'btn btn-outline-primary btn-lg'
-              = button_to 'Edit Client',edit_client_path(@client), method: 'get', class: 'btn btn-primary btn-lg'
-          %hr
-          .text-center
-            %h4.card-title= "#{@client.first_name} #{@client.last_name}"
-          %p.card-text
-            %span.text-muted Email:
-            = @client.email
-          %p.card-text
-            %span.text-muted Phone:
-            = @client.phone_number
+.ClientCard
+  .ClientCard__card-header
+    .ClientIconPanel
+      = link_to edit_client_path(@client), class: 'ClientIconPanel__icon-link' do
+        %i{ class: 'fa fa-pencil fa-2x ClientIconPanel__icon-link_edit', title: 'Edit this booking', 'aria-hidden': 'true' }
+      = link_to client_path(@client), method: 'delete', class: 'ClientIconPanel__icon-link', title: 'Delete this booking', data: { confirm: 'Are you sure?' } do
+        %i{ class: 'fa fa-trash fa-2x ClientIconPanel__icon-link_delete', 'aria-hidden': 'true' }
+  .ClientCard__card-body_not-rounded
+    %h3= "#{@client.first_name} #{@client.last_name}"
+    %p
+      %span.text-muted Email:
+      = @client.email
+    %p
+      %span.text-muted Phone:
+      = @client.phone_number
+  .ClientCard__card-footer
+    = link_to 'Back', '', onclick: 'history.back()'

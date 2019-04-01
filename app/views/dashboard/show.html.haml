@@ -7,7 +7,7 @@
         - @booking_requests.each do |br|
           .card
             .card-body
-              %h3.card-title.text-center= format_datetime(br.requested_date)
+              %h3.card-title.text-center= "#{format_date(br.requested_date)} at #{format_time(br.requested_time)}"
               %hr
               %h4.card-title Client Information
               %p.card-text= "#{br.first_name} #{br.last_name}"

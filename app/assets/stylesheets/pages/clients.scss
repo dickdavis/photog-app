@@ -1,0 +1,51 @@
+.ClientsRibbon {
+  @include action-ribbon;
+
+  &__form_inline {
+    @include form-inline;
+  }
+}
+
+.ClientsContainer {
+  @include default-grid;
+}
+
+.ClientsCard {
+  @include card-with-header;
+  @include card-plain;
+
+  &__card-header {
+    .ClientsIconPanel {
+      text-align: right;
+      @include icon-panel;
+    }
+  }
+}
+
+.ClientCard {
+  @include card-with-header-and-footer;
+  @include card-plain;
+  width: 97%;
+  @include margin($base-spacing auto null auto);
+
+  @media screen and (min-width: $M) {
+    width: 75%;
+  }
+
+  @media screen and (min-width: $L) {
+    width: 50%;
+  }
+
+  &__card-header {
+    .ClientIconPanel {
+      text-align: right;
+      @include icon-panel;
+    }
+  }
+
+  &__button-group {
+    @include button-group;
+    width: 100%;
+    justify-content: center;
+  }
+}

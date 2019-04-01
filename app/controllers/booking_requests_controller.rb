@@ -103,7 +103,8 @@ class BookingRequestsController < ApplicationController
   def booking_from_params
     @booking = Booking.create do |booking|
       booking.name = "#{@client.last_name}, #{@client.first_name} (#{@booking_request.package.name})"
-      booking.start_time = @booking_request.requested_date
+      booking.start_date = @booking_request.requested_date
+      booking.start_time = @booking_request.requested_time
       booking.client = @client
       booking.booking_package = @booking_package
     end
@@ -114,6 +115,6 @@ class BookingRequestsController < ApplicationController
   ##
   # Whitelists parameters
   def booking_request_params
-    params.require(:booking_request).permit(:first_name, :last_name, :email, :phone_number, :requested_date, :package_id)
+    params.require(:booking_request).permit(:first_name, :last_name, :email, :phone_number, :requested_date, :requested_time, :package_id)
   end
 end

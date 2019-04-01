@@ -1,0 +1,12 @@
+.PackagesCard {
+  @include card-plain;
+  @include card-with-header;
+
+  &__card-header {
+    .PackagesIconPanel {
+      @include icon-panel;
+
+      text-align: right;
+    }
+  }
+}

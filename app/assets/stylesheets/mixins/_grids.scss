@@ -1,0 +1,56 @@
+$grid-medium: (
+  media: "(min-width: #{$M})"
+);
+
+$grid-large: (
+  media: "(min-width: #{$L})"
+);
+
+@mixin default-grid {
+  @include grid-container;
+
+  &__grid-item {
+    @include margin(null null 20px null);
+    @include grid-column(12 of 12);
+
+    @include grid-media($grid-medium){
+      @include grid-column(6 of 12);
+    }
+
+    @include grid-media($grid-large){
+      @include grid-column(4 of 12);
+    }
+  }
+
+  &__grid-item_single {
+    @include margin(null null 20px null);
+    @include grid-column(12 of 12);
+
+    @include grid-media($grid-medium){
+      @include grid-column(6 of 12);
+      @include grid-shift(3);
+    }
+  }
+
+  &__grid-item_double {
+    @include margin(null null 20px null);
+    @include grid-column(12 of 12);
+
+    @include grid-media($grid-medium){
+      @include grid-column(6 of 12);
+    }
+  }
+
+  &__grid-item_triple {
+    @include margin(null null 20px null);
+    @include grid-column(12 of 12);
+
+    @include grid-media($grid-medium){
+      @include grid-column(4 of 12);
+    }
+  }
+
+  &__callout {
+    @include grid-column(12 of 12);
+  }
+}

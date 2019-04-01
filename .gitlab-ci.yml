@@ -1,0 +1,28 @@
+image: ruby:2.5.1
+
+services:
+  - postgres:latest
+
+variables:
+  POSTGRES_DB: test_db
+  POSTGRES_USER: runner
+  POSTGRES_PASSWORD: ""
+
+tests:
+  stage: test
+  script:
+    - apt-get update -qy
+    - curl -sL https://deb.nodesource.com/setup_11.x | bash -
+    - apt-get install -y nodejs
+    - bundle install --without postgres production --jobs $(nproc) "${FLAGS[@]}"
+    - cp config/gitlab-database.yml config/database.yml
+    - RAILS_ENV=test bundle exec rails db:create db:schema:load
+    - bundle exec rspec
+
+staging:
+  stage: deploy
+  script:
+  - gem install dpl
+  - dpl --provider=heroku --app=photog-app-staging --api-key=$HEROKU_STAGING_API_KEY
+  only:
+  - master

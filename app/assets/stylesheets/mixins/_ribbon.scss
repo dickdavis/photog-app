@@ -1,0 +1,14 @@
+@mixin action-ribbon {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  @include margin($small-spacing);
+
+  &__button_solid {
+    @include button-solid(map-get($theme_colors, primary), white);
+  }
+
+  &__button_outline {
+    @include button-outline(map-get($theme_colors, primary));
+  }
+}

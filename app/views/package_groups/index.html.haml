@@ -1,107 +1,99 @@
-.container-fluid
-  .row.justify-content-center
-    .text-center
-      = button_to new_package_group_path, class: 'btn btn-primary btn-lg mt-2', method: 'get'  do
-        %i{ class: 'fa fa-plus-circle' }
-        \Create Package Group
-  %hr
-- if @package_groups.count > 0
-  - @package_groups.each do |pg|
-    .jumbotron.jumbotron-fluid
-      .container
-        .icon-panel
-          .text-right
-            %td
-              = link_to package_group_path(pg), method: 'delete', class: 'icon-link', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Delete this package group', data: { confirm: 'Are you sure?' } do
-                %i{ class: 'fa fa-minus-circle fa-2x icon-delete', 'aria-hidden': 'true' }
-            %td
-              = link_to edit_package_group_path(pg), class: 'icon-link' do
-                %i{ class: 'fa fa-pencil fa-2x icon-edit', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Edit this package group', 'aria-hidden': 'true' }
-        .text-center
-          %h1= pg.name
-          %p.lead
-            - if pg.description != ''
-              = pg.description
-        .text-center
-          = button_to new_package_group_package_path(pg), class: 'btn btn-primary btn-lg', method: 'get' do
-            %i{ class: 'fa fa-plus-circle' }
-            \Create Package
-    .container
-      .row.justify-content-center.my-4
-        - if pg.packages.count > 1
-          .card-group
-            - pg.packages.order(total_cost: :asc).each do |package|
-              .card
-                .card-header
-                  .text-right
-                    %td
-                      = link_to package_group_package_path(pg, package), method: 'delete', class: 'icon-link', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Delete this package', data: { confirm: 'Are you sure?' } do
-                        %i{ class: 'fa fa-minus-circle fa-2x icon-delete', 'aria-hidden': 'true' }
-                    %td
-                      = link_to edit_package_group_package_path(pg, package), class: 'icon-link' do
-                        %i{ class: 'fa fa-pencil fa-2x icon-edit', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Edit this package', 'aria-hidden': 'true' }
-                    %td
-                      = link_to package_group_package_path(pg, package), class: 'icon-link'  do
-                        %i{ class: 'fa fa-search fa-2x icon-view', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'View this package','aria-hidden': 'true' }
-                .card-body
-                  .text-center
-                    %h3.card-title= package.name
-                  <hr>
-                  .text-center
-                    %p.text-muted= package.description
-                  %p.card-text
-                    %span.text-muted Duration:
-                    = package.duration
-                    %span.text-muted mins
-                  %p.card-text
-                    %span.text-muted Total cost:
-                    = number_to_currency(package.total_cost, unit: '$')
-                  %p.card-text
-                    %span.text-muted Retainer fee:
-                    = number_to_currency(package.retainer_fee, unit: '$')
-        - elsif pg.packages.count == 1
-          - pg.packages.order(total_cost: :asc).each do |package|
-            .col-md-6
-              .card.mb-4
-                .card-header
-                  .text-right
-                    %td
-                      = link_to package_group_package_path(pg, package), method: 'delete', class: 'icon-link', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Delete this package', data: { confirm: 'Are you sure?' } do
-                        %i{ class: 'fa fa-minus-circle fa-2x icon-delete', 'aria-hidden': 'true' }
-                    %td
-                      = link_to edit_package_group_package_path(pg, package), class: 'icon-link' do
-                        %i{ class: 'fa fa-pencil fa-2x icon-edit', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Edit this package', 'aria-hidden': 'true' }
-                    %td
-                      = link_to package_group_package_path(pg, package), class: 'icon-link'  do
-                        %i{ class: 'fa fa-search fa-2x icon-view', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'View this package','aria-hidden': 'true' }
-                .card-body
-                  .text-center
-                    %h3.card-title= package.name
-                  <hr>
-                  .text-center
-                    %p.text-muted= package.description
-                  %p.card-text
-                    %span.text-muted Duration:
-                    = package.duration
-                    %span.text-muted mins
-                  %p.card-text
-                    %span.text-muted Total cost:
-                    = number_to_currency(package.total_cost, unit: '$')
-                  %p.card-text
-                    %span.text-muted Retainer fee:
-                    = number_to_currency(package.retainer_fee, unit: '$')
-        - else
-          .col-md-6
-            .card.mb-4
-              .card-body
-                .text-center
-                  %h3.card-title No packages exist for package group yet.
-                  %p.card-text Split similar pricing packages up according to cost, duration, and more. Packages are ordered from left-to-right by total package cost, ascending. Use the 'Create Package' button to start adding packages in now.
-- else
-  .row.justify-content-center
-    .col-md-6
-      .card
-        .card-body
-          .text-center
-            %h3.card-title No package groups exist yet.
-            %p.card-text Package groups are small groupings of 2-4 pricing packages. Packages can be grouped by the photographer according to subject areas such as Maternity, Wedding, Family, etc. Create your first package group using the 'Create Package Group' button near the middle of the screen at the top of the page.
+.PackageGroupsRibbon
+  = button_to 'Create Package Group', new_package_group_path, method: 'get', class: 'PackageGroupsRibbon__button_solid'
+%hr
+.PackageGroupsContainer
+  - if @package_groups.count > 0
+    - @package_groups.each do |pg|
+      .PackageGroupsContainer__callout.PackageGroupsHero
+        .PackageGroupsIconPanel
+          = link_to edit_package_group_path(pg), class: 'PackageGroupsIconPanel__icon-link' do
+            %i{ class: 'fa fa-pencil fa-2x PackageGroupsIconPanel__icon-link_edit', title: 'Edit this package group' }
+          = link_to package_group_path(pg), class: 'PackageGroupsIconPanel__icon-link', method: 'delete', data: { confirm: 'Are you sure?' } do
+            %i{ class: 'fa fa-trash fa-2x PackageGroupsIconPanel__icon-link_delete', title: 'Delete this package group' }
+        %h1.PackageGroupsHero__heading= pg.name
+        %p.PackageGroupsHero__lead
+          - if pg.description != ''
+            = pg.description
+        = button_to 'Create Package', new_package_group_package_path(pg), method: 'get', class: 'PackageGroupsHero__button_outline'
+      - if pg.packages.count.zero?
+        .PackageGroupsContainer__grid-item_single.PackageGroupsCard
+          .PackageGroupsCard__card-body_rounded
+            %h3 No packages exist for package group yet.
+            %p.text-centered Split similar pricing packages up according to cost, duration, and more. Packages are ordered from left-to-right by total package cost, ascending. Use the 'Create Package' button to start adding packages in now.
+      - elsif (pg.packages.count % 3).zero?
+        - pg.packages.order(total_cost: :asc).each do |package|
+          .PackageGroupsContainer__grid-item_triple.PackagesCard
+            .PackagesCard__card-header
+              .PackagesIconPanel
+                = link_to package_group_package_path(pg, package), class: 'PackagesIconPanel__icon-link'  do
+                  %i{ class: 'fa fa-eye fa-2x PackagesIconPanel__icon-link_view', title: 'View this package' }
+                = link_to edit_package_group_package_path(pg, package), class: 'PackagesIconPanel__icon-link' do
+                  %i{ class: 'fa fa-pencil fa-2x PackagesIconPanel__icon-link_edit', title: 'Edit this package' }
+                = link_to package_group_package_path(pg, package), class: 'PackagesIconPanel__icon-link', method: 'delete', data: { confirm: 'Are you sure?' } do
+                  %i{ class: 'fa fa-trash fa-2x PackagesIconPanel__icon-link_delete', title: 'Delete this package' }
+            .PackagesCard__card-body_rounded-bottom
+              %h3= package.name
+              %p.text-centered= package.description
+              %p
+                %span.text-muted Duration:
+                = package.duration
+                %span.text-muted mins
+              %p
+                %span.text-muted Total cost:
+                = number_to_currency(package.total_cost, unit: '$')
+              %p
+                %span.text-muted Retainer fee:
+                = number_to_currency(package.retainer_fee, unit: '$')
+      - elsif (pg.packages.count % 2).zero?
+        - pg.packages.order(total_cost: :asc).each do |package|
+          .PackageGroupsContainer__grid-item_double.PackagesCard
+            .PackagesCard__card-header
+              .PackagesIconPanel
+                = link_to package_group_package_path(pg, package), class: 'PackagesIconPanel__icon-link'  do
+                  %i{ class: 'fa fa-eye fa-2x PackagesIconPanel__icon-link_view', title: 'View this package' }
+                = link_to edit_package_group_package_path(pg, package), class: 'PackagesIconPanel__icon-link' do
+                  %i{ class: 'fa fa-pencil fa-2x PackagesIconPanel__icon-link_edit', title: 'Edit this package' }
+                = link_to package_group_package_path(pg, package), class: 'PackagesIconPanel__icon-link', method: 'delete', data: { confirm: 'Are you sure?' } do
+                  %i{ class: 'fa fa-trash fa-2x PackagesIconPanel__icon-link_delete', title: 'Delete this package' }
+            .PackagesCard__card-body_rounded-bottom
+              %h3= package.name
+              %p.text-centered= package.description
+              %p
+                %span.text-muted Duration:
+                = package.duration
+                %span.text-muted mins
+              %p
+                %span.text-muted Total cost:
+                = number_to_currency(package.total_cost, unit: '$')
+              %p
+                %span.text-muted Retainer fee:
+                = number_to_currency(package.retainer_fee, unit: '$')
+      - elsif pg.packages.count == 1
+        - pg.packages.order(total_cost: :asc).each do |package|
+          .PackageGroupsContainer__grid-item_single.PackagesCard
+            .PackagesCard__card-header
+              .PackagesIconPanel
+                = link_to package_group_package_path(pg, package), class: 'PackagesIconPanel__icon-link'  do
+                  %i{ class: 'fa fa-eye fa-2x PackagesIconPanel__icon-link_view', title: 'View this package' }
+                = link_to edit_package_group_package_path(pg, package), class: 'PackagesIconPanel__icon-link' do
+                  %i{ class: 'fa fa-pencil fa-2x PackagesIconPanel__icon-link_edit', title: 'Edit this package' }
+                = link_to package_group_package_path(pg, package), class: 'PackagesIconPanel__icon-link', method: 'delete', data: { confirm: 'Are you sure?' } do
+                  %i{ class: 'fa fa-trash fa-2x PackagesIconPanel__icon-link_delete', title: 'Delete this package' }
+            .PackagesCard__card-body_rounded-bottom
+              %h3= package.name
+              %p.text-centered= package.description
+              %p
+                %span.text-muted Duration:
+                = package.duration
+                %span.text-muted mins
+              %p
+                %span.text-muted Total cost:
+                = number_to_currency(package.total_cost, unit: '$')
+              %p
+                %span.text-muted Retainer fee:
+                = number_to_currency(package.retainer_fee, unit: '$')
+  - else
+    .PackageGroupsCard
+      .PackageGroupsCard__card-body
+        %h3 No package groups exist yet.
+        %p.text-centered Package groups are small groupings of 2-4 pricing packages. Packages can be grouped by the photographer according to subject areas such as Maternity, Wedding, Family, etc. Create your first package group using the 'Create Package Group' button near the middle of the screen at the top of the page.

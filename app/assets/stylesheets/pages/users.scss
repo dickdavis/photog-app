@@ -1,0 +1,13 @@
+.UserCard {
+  @include card-with-footer;
+  width: 97%;
+  @include margin($base-spacing auto null auto);
+
+  @media screen and (min-width: $M) {
+    width: 75%;
+  }
+
+  @media screen and (min-width: $L) {
+    width: 50%;
+  }
+}

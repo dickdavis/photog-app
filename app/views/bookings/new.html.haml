@@ -1,11 +1,4 @@
-= render 'layouts/errors', object: @booking
-.container
-  .row.justify-content-center
-    .col-md-8
-      .card.mt-4
-        .card-body
-          .text-left
-            .btn-group
-              = button_to 'Bookings', bookings_path, method: 'get', class: 'btn btn-outline-primary btn-lg'
-          %hr
-          = render 'form'
+.BookingCard
+  .BookingCard__card-body_rounded
+    %h3= I18n.t('pages.bookings.new.title')
+    = render 'form'

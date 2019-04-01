@@ -11,6 +11,7 @@
 # Package group and package resources share a nested, one-to-many relationship.
 class Package < ApplicationRecord
   belongs_to :package_group
+  has_many :booking_requests, dependent: :destroy
 
   validates :name, presence: true
   validates :description, presence: true, length: { maximum: 256 }

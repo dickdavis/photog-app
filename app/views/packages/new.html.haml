@@ -1,11 +1,6 @@
-= render 'layouts/errors', object: @package
-.container
-  .row.justify-content-center
-    .col-md-8
-      .card.mt-2
-        .card-body
-          .text-left
-            .btn-group
-              = button_to 'Package Index', package_groups_path, method: 'get', class: 'btn btn-outline-primary btn-lg'
-          %hr
-          = render 'form'
+.card.mt-2
+  .card-body
+    .btn-group
+      = button_to 'Package Index', package_groups_path, method: 'get', class: 'btn btn-outline-primary btn-lg'
+    %hr
+    = render 'form'

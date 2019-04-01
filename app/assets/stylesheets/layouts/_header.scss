@@ -1,0 +1,36 @@
+.MushakaHeader {
+  text-align: center;
+  @include margin($small-spacing);
+  @include padding($base-spacing);
+
+  &_notice {
+    background-color: tint(map-get($theme_colors, safe), 50%);
+    @include border-width(1px);
+    @include border-style(solid);
+    @include border-color(shade(map-get($theme_colors, safe), 40%));
+    @include border-top-radius($base_border_radius);
+    @include border-bottom-radius($base_border_radius);
+
+    p {
+      @include margin(0);
+      color: shade(map-get($theme_colors, safe), 40%);
+    }
+  }
+
+  &_alert {
+    background-color: tint(map-get($theme_colors, danger), 50%);
+    @include border-width(1px);
+    @include border-style(solid);
+    @include border-color(shade(map-get($theme_colors, danger), 40%));
+    @include border-top-radius($base_border_radius);
+    @include border-bottom-radius($base_border_radius);
+
+    ul {
+      @include margin(0);
+
+      li {
+        color: shade(map-get($theme_colors, danger), 40%);
+      }
+    }
+  }
+}

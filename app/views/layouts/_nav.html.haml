@@ -1,27 +1,27 @@
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  %a.navbar-brand{ href: '#' } Navbar
-  %button.navbar-toggler{ type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbarNavDropdown', 'aria-controls': 'navbarNavDropdown', 'aria-expanded': false, 'aria-label': 'Toggle Navigation' }
-    %span.navbar-toggler-icon
-  .collapse.navbar-collapse#navbarNavDropdown
-    .container
-      %ul.navbar-nav.justify-content-center
-        - if signed_in?
-          %li.nav-item
-            = link_to t('navigation.auth.dashboard'), dashboard_path, class: 'nav-link text-center'
-          %li.nav-item
-            = link_to t('navigation.auth.bookings'), bookings_path, class: 'nav-link text-center'
-          %li.nav-item
-            = link_to t('navigation.auth.clients'), clients_path, class: 'nav-link text-center'
-          %li.nav-item
-            = link_to t('navigation.auth.pricing'), package_groups_path, class: 'nav-link text-center'
-          %li.nav-item
-            = link_to t('navigation.auth.sign_out'), sign_out_path, method: :delete, class: 'nav-link text-center'
-        - else
-          %li.nav-item
-            = link_to t('navigation.public.home'), root_path, class: 'nav-link text-center'
-          %li.nav-item
-            = link_to t('navigation.public.packages'), pricing_path, class: 'nav-link text-center'
-          %li.nav-item
-            = link_to t('navigation.public.book_now'), new_booking_request_path, class: 'nav-link text-center'
-          %li.nav-item
-            = link_to t('navigation.public.sign_in'), sign_in_path, class: 'nav-link text-center'
+%nav.MushakaNavbar
+  .MushakaNavbar__navbar-header
+    %a{ href: '#', id: 'MushakaNavbar__navbar-toggle' }
+      = icon 'bars'
+    %span.MushakaNavbar__navbar-brand PhotogApp
+  .MushakaNavbar__navbar-menu
+    %ul
+      - if signed_in?
+        %li
+          = link_to I18n.t('navigation.auth.dashboard'), dashboard_path
+        %li
+          = link_to I18n.t('navigation.auth.bookings'), bookings_path
+        %li
+          = link_to I18n.t('navigation.auth.clients'), clients_path
+        %li
+          = link_to I18n.t('navigation.auth.pricing'), package_groups_path
+        %li
+          = link_to I18n.t('navigation.auth.sign_out'), sign_out_path, method: :delete
+      - else
+        %li
+          = link_to I18n.t('navigation.public.home'), root_path
+        %li
+          = link_to I18n.t('navigation.public.pricing'), pricing_path
+        %li
+          = link_to I18n.t('navigation.public.book_now'), new_booking_request_path
+        %li
+          = link_to I18n.t('navigation.public.sign_in'), sign_in_path

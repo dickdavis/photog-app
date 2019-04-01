@@ -12,6 +12,7 @@ class Booking < ApplicationRecord
   belongs_to :booking_package
 
   validates :name, presence: true
+  validates :start_date, presence: true
   validates :start_time, presence: true
   validates :client_id, presence: true
   validates :booking_package_id, presence: true

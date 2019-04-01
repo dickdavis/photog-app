@@ -1,11 +1,3 @@
-= render 'layouts/errors', object: @client
-.container
-  .row.justify-content-center
-    .col-md-8
-      .card.mt-4
-        .card-body
-          .text-left
-            .btn-group
-              = button_to 'Client Index', clients_path, method: 'get', class: 'btn btn-outline-primary btn-lg'
-          %hr
-          = render 'form'
+.ClientCard
+  .ClientCard__card-body_rounded
+    = render 'form'

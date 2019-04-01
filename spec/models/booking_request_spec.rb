@@ -9,6 +9,7 @@ describe BookingRequest, type: :model do
     it { should validate_presence_of :email }
     it { should validate_presence_of :phone_number }
     it { should validate_presence_of :requested_date }
+    it { should validate_presence_of :requested_time }
     it { should validate_presence_of :package_id }
   end
 end

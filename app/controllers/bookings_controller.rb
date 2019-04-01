@@ -38,11 +38,12 @@ class BookingsController < ApplicationController
   ##
   # POST /bookings
   def create
-    @booking = Booking.create(booking_params)
+    @booking = Booking.create(booking_from_params)
 
     if @booking.save
       redirect_to booking_path(@booking), notice: t('notices.booking.create')
     else
+      @booking.booking_package.destroy
       redirect_to new_booking_path, alert: @booking.errors.full_messages
     end
   end
@@ -73,8 +74,27 @@ class BookingsController < ApplicationController
   end
 
   ##
+  # Archives a package as a booking package
+  def archive_package(package_id)
+    package = Package.find(package_id)
+    BookingPackage.create(name: package.name,
+                          duration: package.duration,
+                          retainer_fee: package.retainer_fee,
+                          total_cost: package.total_cost)
+  end
+
+  def booking_from_params
+    {
+      name: booking_params[:name],
+      start_date: booking_params[:start_date],
+      start_time: booking_params[:start_time],
+      client: Client.find(booking_params[:client_id]),
+      booking_package: archive_package(booking_params[:booking_package])
+    }
+  end
+  ##
   # Whitelists parameters
   def booking_params
-    params.require(:booking).permit(:name, :start_time, :client_id, :booking_package_id)
+    params.require(:booking).permit(:name, :start_date, :start_time, :client_id, :booking_package)
   end
 end
