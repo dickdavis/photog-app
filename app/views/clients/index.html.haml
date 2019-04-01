@@ -1,69 +1,41 @@
-.container-fluid
-  .row.justify-content-center.mt-4
-    = form_tag '#',  method: 'get', id: 'client-listing-actions', class: 'form-inline' do
-      .form-group
-        = text_field_tag :search, params[:search], placeholder: 'Search clients...', class: 'form-control form-control-lg', id: 'nav-search-box'
-        .btn-group
-          = submit_tag 'Search', class: 'btn btn-outline-primary btn-lg', id: 'client-search'
-          = submit_tag 'Create', class: 'btn btn-primary btn-lg', id: 'client-create'
-  %hr
+.ClientsRibbon
+  = form_tag '#', id: 'client-listing-actions', method: 'get', class: 'ClientsRibbon__form_inline' do
+    = text_field_tag :search, params[:search], placeholder: 'Search clients...', id: 'nav-search-box'
+    = submit_tag 'Search', id: 'client-search', class: 'ClientsRibbon__button_outline'
+    = submit_tag 'Create', id: 'client-create', class: 'ClientsRibbon__button_solid'
+%hr
+.ClientsContainer
   - if @clients.count > 0
-    .grid
-      .grid-sizer
-      - @clients.each do |client|
-        .card.grid-item
-          .card-header
-            .text-right
-              %td
-                = link_to client_path(client), method: 'delete', class: 'icon-link', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Delete this client', data: { confirm: 'Are you sure?' } do
-                  %i{ class: 'fa fa-minus-circle fa-2x icon-delete', 'aria-hidden': 'true' }
-              %td
-                = link_to edit_client_path(client), class: 'icon-link' do
-                  %i{ class: 'fa fa-pencil fa-2x icon-edit', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Edit this client', 'aria-hidden': 'true' }
-              %td
-                = link_to client_path(client), class: 'icon-link'  do
-                  %i{ class: 'fa fa-search fa-2x icon-view', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'View this client','aria-hidden': 'true' }
-          .card-body
-            %h3.card-title= "#{client.first_name} #{client.last_name}"
-            <hr>
-            %p.card-text
-              %span.text-muted Email:
-              = client.email
-            %p.card-text
-              %span.text-muted Phone:
-              = client.phone_number
-          .card-footer
-            =link_to 'Bookings', bookings_path(params: { client_id: client })
+    - @clients.each do |client|
+      .ClientsCard.ClientsContainer__grid-item
+        .ClientsCard__card-header
+          .ClientsIconPanel
+            = link_to client_path(client), class: 'ClientsIconPanel__icon-link'  do
+              %i{ class: 'fa fa-eye fa-2x ClientsIconPanel__icon-link_view', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'View this client','aria-hidden': 'true' }
+            = link_to edit_client_path(client), class: 'ClientsIconPanel__icon-link' do
+              %i{ class: 'fa fa-pencil fa-2x ClientsIconPanel__icon-link_edit', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Edit this client', 'aria-hidden': 'true' }
+            = link_to client_path(client), method: 'delete', class: 'ClientsIconPanel__icon-link', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Delete this client', data: { confirm: 'Are you sure?' } do
+              %i{ class: 'fa fa-trash fa-2x ClientsIconPanel__icon-link_delete', 'aria-hidden': 'true' }
+        .ClientsCard__card-body_rounded-bottom
+          %h3= "#{client.first_name} #{client.last_name}"
+          %p.text-centered= client.email
+          %p.text-centered= client.phone_number
+          =link_to 'Bookings', bookings_path(params: { client_id: client })
   - elsif @clients.count == 0 && params[:search]
-    .row.justify-content-center
-      .col-md-6
-        .card
-          .card-body
-            .text-center
-              %h3.card-title No clients found!
-              %p.card-text
-                Try using a different search term, or
-                = link_to 'create a new client', new_client_path
-                now.
+    .ClientsCard.ClientsContainer__grid-item_single
+      .ClientsCard__card-body_rounded
+        %h3 No clients found!
+        %p.text-centered
+          Try using a different search term, or
+          = link_to 'create a new client', new_client_path
+          now.
   - else
-    .row.justify-content-center
-      .col-md-6
-        .card
-          .card-body
-            .text-center
-              %h3.card-title No clients exist for photographer yet.
-              %p.card-text Now is a great time to add an existing client's information into the application. Click on the 'Create' button near the middle of the screen at the top to get started.
+    .ClientsCard.ClientsContainer__grid-item_single
+      .ClientsCard__card-body_rounded
+        %h3 No clients exist for photographer yet.
+        %p.text-centered Now is a great time to add an existing client's information into the application. Click on the 'Create' button near the middle of the screen at the top to get started.
 :javascript
   document.addEventListener('turbolinks:load', function() {
-    let grid = document.querySelector('.grid');
-
-    let msnry = new Masonry( grid, {
-      itemSelector: '.grid-item',
-      columnWidth: '.grid-sizer',
-      percentPosition: true,
-      gutter: 10
-    });
-
     let form = document.getElementById('client-listing-actions');
     let search = document.getElementById('client-search');
     let create = document.getElementById('client-create');

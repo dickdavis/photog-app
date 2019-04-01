@@ -5,6 +5,7 @@ require 'rails_helper'
 describe 'Bookings Controller', type: :request do
   let(:user) { create(:user) }
   let(:client) { create(:client) }
+  let(:package) { create(:package) }
   let(:booking_package) { create(:booking_package) }
   let(:booking) { create(:booking, booking_package: booking_package, client: client) }
 
@@ -30,6 +31,7 @@ describe 'Bookings Controller', type: :request do
     end
 
     it 'redirects from the create path' do
+      allow(Package).to receive(:find).and_return(package)
       expect do
         post bookings_path(booking: attributes_for(:booking))
       end.to_not change(Booking, :count)
@@ -76,6 +78,7 @@ describe 'Bookings Controller', type: :request do
     end
 
     it 'fails to create with invalid parameters' do
+      allow(Package).to receive(:find).and_return(package)
       expect do
         post bookings_path(booking: attributes_for(:booking, client_id: client.id, booking_package_id: booking_package.id, name: ''), as: user)
       end.to_not change(Booking, :count)
@@ -84,6 +87,7 @@ describe 'Bookings Controller', type: :request do
     end
 
     it 'creates with valid parameters' do
+      allow(Package).to receive(:find).and_return(package)
       expect do
         post bookings_path(booking: attributes_for(:booking, client_id: client.id, booking_package_id: booking_package.id), as: user)
       end.to change(Booking, :count).by(1)

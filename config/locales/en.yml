@@ -4,10 +4,11 @@ en:
       dashboard: "Dashboard"
       bookings: "Bookings"
       clients: "Clients"
+      pricing: "Pricing"
       sign_out: "Sign Out"
     public:
       home: "Home"
-      packages: "Pricing"
+      pricing: "Pricing"
       book_now: "Book Now"
       sign_in: "Sign In"
   alerts:
@@ -42,3 +43,41 @@ en:
     user:
       create: "Your account was successfully created."
       update: "User information was successfully updated."
+  pages:
+    bookings:
+      index:
+        title: "Bookings"
+        action-ribbon:
+          create: "Create Booking"
+        icon-panel:
+          view: "View this Booking"
+          edit: "Edit this Booking"
+          delete: "Delete this Booking"
+        messages:
+          no-bookings:
+            heading: "No Bookings Found!"
+            text: "Bookings are the connection between the client, package, and photographer, representing the individual session event. Go ahead and start adding existing bookings in now if you have them."
+          no-bookings-for-client:
+            heading: "No Bookings Found!"
+            text: "The selected client does not currently have any bookings entered. Use the \"Create Booking\" button to enter a booking for this client."
+      new:
+        title: "Create Booking"
+      edit:
+        title: "Edit Booking"
+      show:
+        icon-panel:
+          edit: "Edit this Booking"
+          delete: "Delete this Booking"
+  models:
+    booking:
+      fields:
+        duration: "Duration"
+        package: "Package"
+        total_cost: "Total Cost"
+        retainer_fee: "Retainer Fee"
+    booking_package:
+      fields:
+        duration: "Duration"
+        name: "Package"
+        total_cost: "Total Cost"
+        retainer_fee: "Retainer Fee"

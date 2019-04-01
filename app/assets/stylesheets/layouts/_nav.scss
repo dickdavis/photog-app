@@ -1,0 +1,109 @@
+.MushakaNavbar {
+  background-color: $gray-90;
+
+  @media screen and (min-width: $L) {
+    display: flex;
+  }
+
+  &__navbar-header {
+    width: 100%;
+    background-color: $gray-90;
+    @include margin(0);
+    @include padding($small-spacing 0);
+
+    @media screen and (min-width: $L) {
+      flex: 30%;
+    }
+
+    a {
+      font-size: 150%;
+      color: $gray-20;
+      text-decoration: none;
+      @include padding($small-spacing);
+
+      &:focus {
+        outline-color: transparent;
+      }
+
+      @media screen and (min-width: $L) {
+        visibility: hidden;
+      }
+
+      i {
+        color: map-get($theme-colors, primary);
+      }
+    }
+  }
+
+  &__navbar-brand {
+    color: $gray-20;
+    font-size: 150%;
+  }
+
+  &__navbar-menu {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    background-color: $gray-90;
+    transform: translateX(-200%);
+    transition: transform .6s ease;
+    z-index: 9;
+
+    ul {
+      list-style-type: none;
+      @include margin(0);
+      @include padding(0);
+
+      li {
+        a {
+          display: block;
+          font-size: 115%;
+          text-decoration: none;
+          color: $gray-20;
+          @include padding($mid-spacing null);
+
+          &:hover {
+            color: map-get($theme-colors, primary);
+            background-color: $gray-40;
+          }
+
+          &:active {
+            color: map-get($theme-colors, primary);
+            background-color: $gray-20;
+          }
+
+          &:focus {
+            outline-color: transparent;
+          }
+        }
+      }
+    }
+
+    @media screen and (min-width: $L) {
+      position: relative;
+      flex: 70%;
+      align-self: center;
+      transform: none;
+      transition: none;
+
+      ul {
+        li {
+          display: inline;
+
+          a {
+            display: inline;
+            @include padding(0 $mid-spacing);
+
+            &:hover {
+              background-color: $gray-90;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__navbar-menu_opened {
+    transform: translateX(0);
+  }
+}

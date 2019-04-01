@@ -1,20 +1,17 @@
 = form_for @client do |f|
-  .form-group.row
-    = f.label :first_name, class: 'col-sm-3 col-form-label'
-    .col-sm-9
+  .form
+    .form-group
+      = f.label :first_name
       = f.text_field :first_name, class: 'form-control'
-  .form-group.row
-    = f.label :last_name, class: 'col-sm-3 col-form-label'
-    .col-sm-9
+    .form-group
+      = f.label :last_name
       = f.text_field :last_name, class: 'form-control'
-  .form-group.row
-    = f.label :email, class: 'col-sm-3 col-form-label'
-    .col-sm-9
+    .form-group
+      = f.label :email
       = f.email_field :email, class: 'form-control'
-  .form-group.row
-    = f.label :phone_number, class: 'col-sm-3 col-form-label'
-    .col-sm-9
+    .form-group
+      = f.label :phone_number
       = f.telephone_field :phone_number, class: 'form-control'
-  .actions
-    .text-center
-      = f.submit 'Save', id: 'client-submit', class: 'btn btn-lg btn-primary'
+    .form-action.ClientCard__button-group
+      = f.submit 'Save', id: 'client-submit', class: 'ClientCard__button_solid'
+      %input{ value: 'Back', type: 'button', method: 'get', class: 'ClientCard__button_outline', onclick: 'history.back()'}

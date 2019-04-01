@@ -7,6 +7,7 @@ FactoryBot.define do
     email { Faker::Internet.email }
     phone_number { Faker::Number.number(10) }
     requested_date { Date.current + 2.days }
+    requested_time { Time.now }
     association :package
   end
 end

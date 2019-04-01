@@ -1,0 +1,67 @@
+.PackageGroupsRibbon {
+  @include action-ribbon;
+}
+
+.PackageGroupsContainer {
+  @include default-grid;
+
+  &__grid-item_triple, &__grid-item_double, &__grid-item_single, &__grid-item {
+    p:nth-child(2) {
+      text-align: center;
+    }
+  }
+
+  &__grid-item_triple {
+    p:nth-child(2) {
+
+      @media screen and (min-width: $M) {
+        min-height: 165px;
+      }
+
+      @media screen and (min-width: $L) {
+        min-height: 115px;
+      }
+    }
+  }
+
+  &__grid-item_double {
+    p:nth-child(2) {
+
+      @media screen and (min-width: $M) {
+        min-height: 165px;
+      }
+
+      @media screen and (min-width: $L) {
+        min-height: 115px;
+      }
+    }
+  }
+}
+
+.PackageGroupsHero {
+  @include hero-regular;
+}
+
+.PackageGroupsCard {
+  @include card-plain;
+}
+
+.PackageGroupCard {
+  @include card-plain;
+  width: 97%;
+  margin: auto;
+
+  @media screen and (min-width: $M) {
+    width: 75%;
+  }
+
+  @media screen and (min-width: $L) {
+    width: 50%;
+  }
+}
+
+.PackageGroupsIconPanel {
+  @include icon-panel;
+  @include margin(null null $mid-spacing null);
+  text-align: right;
+}

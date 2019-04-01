@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'open_sansregular';
+  src: asset-url('OpenSans-Regular-webfont.eot');
+  src: asset-url('OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+       asset-url('OpenSans-Regular-webfont.woff') format('woff'),
+       asset-url('OpenSans-Regular-webfont.ttf') format('truetype'),
+       asset-url('OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// Typography
+$base-font-family: 'open_sansregular';
+$heading-font-family: $base-font-family;
+
+// Line height
+$base-line-height: 1.5;
+$heading-line-height: 1.2;
+
+// Other Sizes
+$base-border-radius: 5px;
+$base-spacing: 1.5em;
+$mid-spacing: $base-spacing / 2;
+$small-spacing: $base-spacing / 3;
+$tiny-spacing: $base-spacing / 5;
+$super-spacing: $base-spacing * 3;
+$base-z-index: 0;
+
+// Colors
+$theme-colors: (
+  primary: hsla(218, 100%, 57.8%, 1),
+  accent: red,
+  info: hsla(218, 100%, 57.8%, 1),
+  safe: hsla(125, 69.6%, 72.9%, 1),
+  warning: hsla(48.8, 100%, 56.9%, 1),
+  danger: hsla(0, 100%, 61%, 1)
+);
+$black: hsla(0, 0%, 20%, 1);
+$gray-90: lighten($black, 10%);
+$gray-80: lighten($black, 20%);;
+$gray-70: lighten($black, 30%);;
+$gray-60: lighten($black, 40%);;
+$gray-50: lighten($black, 50%);;
+$gray-40: lighten($black, 60%);;
+$gray-30: lighten($black, 70%);;
+$gray-20: lighten($black, 75%);;
+$gray-10: lighten($black, 79%);;
+
+// Font Colors
+$base-font-color: $black;
+$action-color: map-get($theme-colors, primary);
+
+// Border
+$base-border-color: $gray-40;
+$base-border: 1px solid $base-border-color;
+
+// Background Colors
+$viewport-background-color: #fff;
+
+// Focus
+$focus-outline-color: transparentize($action-color, 0.4);
+$focus-outline-width: 3px;
+$focus-outline: $focus-outline-width solid $focus-outline-color;
+$focus-outline-offset: 2px;
+
+// Animations
+$base-duration: 150ms;
+$base-timing: ease;
+
+// Viewport Sizes
+$XL: 1200px;
+$L: 992px;
+$M: 768px;
+$S: 576px;

@@ -15,5 +15,6 @@ class BookingRequest < ApplicationRecord
   validates :email, presence: true
   validates :phone_number, presence: true
   validates :requested_date, presence: true
+  validates :requested_time, presence: true
   validates :package_id, presence: true
 end

@@ -1,0 +1,29 @@
+@mixin form-inline {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+
+  @media screen and (min-width: $S) {
+    flex-flow: row wrap;
+  }
+
+  @media screen and (min-width: $M) {
+    width: 70%;
+  }
+
+  input {
+    @include margin($tiny-spacing null);
+
+    @media screen and (min-width: $S) {
+      @include margin(null $tiny-spacing);
+    }
+  }
+
+  input[type="text"]{
+    flex: 97%;
+
+    @media screen and (min-width: $S) {
+      flex: 50%;
+    }
+  }
+}

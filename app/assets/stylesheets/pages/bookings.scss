@@ -1,0 +1,55 @@
+.BookingsRibbon {
+  @include action-ribbon;
+}
+
+.BookingsContainer {
+  @include default-grid;
+}
+
+.BookingsCard {
+  @include card-plain;
+  @include card-with-header;
+
+  &__card-header {
+    .BookingsIconPanel {
+      @include icon-panel;
+
+      text-align: right;
+    }
+  }
+}
+
+.BookingCard {
+  @include card-plain;
+  @include card-with-header-and-footer;
+  width: 97%;
+  @include margin($base-spacing auto null auto);
+
+  @media screen and (min-width: $M) {
+    width: 75%;
+  }
+
+  @media screen and (min-width: $L) {
+    width: 50%;
+  }
+
+  &__card-header {
+    .BookingIconPanel {
+      @include icon-panel;
+
+      text-align: right;
+    }
+  }
+}
+
+.BookingButtonGroup {
+  @include button-group;
+
+  &__button_outline {
+    @include button-outline(map-get($theme_colors, primary));
+  }
+
+  &__button_solid {
+    @include button-solid(map-get($theme_colors, primary), white);
+  }
+}

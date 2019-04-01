@@ -1,0 +1,75 @@
+@mixin button-common($_btn-background-color, $_btn-text-color) {
+  background-color: $_btn-background-color;
+  color: $_btn-text-color;
+  appearance: none;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $base-font-family;
+  font-size: 16px;
+  line-height: 22px;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 600;
+  padding: $mid-spacing $base-spacing;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color $base-duration $base-timing;
+  user-select: none;
+  vertical-align: middle;
+  @include border-width(2px);
+  @include border-style(solid);
+  @include border-color($_btn-background-color);
+  @include border-top-radius($base-border-radius);
+  @include border-bottom-radius($base-border-radius);
+
+  &:hover {
+    background-color: shade($_btn-background-color, 20%);
+    color: contrast-switch(shade($_btn-background-color, 20%));
+  }
+
+  &:focus {
+    outline: $focus-outline;
+    outline-offset: $focus-outline-offset;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+      background-color: $_btn-background-color;
+    }
+  }
+}
+
+@mixin button-outline($_btn-text-color) {
+  @include button-common(transparent, $_btn-text-color);
+  @include border-width(2px);
+  @include border-style(solid);
+  @include border-color($_btn-text-color);
+
+  &:hover {
+    background-color: $_btn-text-color;
+    color: white;
+  }
+}
+
+@mixin button-solid($_btn-background-color, $_btn-text-color) {
+  @include button-common($_btn-background-color, $_btn-text-color);
+}
+
+@mixin button-group {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: $S) {
+    flex-flow: row wrap;
+  }
+
+  input {
+    @include margin($tiny-spacing null);
+
+    @media screen and (min-width: $S) {
+      @include margin(null $tiny-spacing);
+    }
+  }
+}

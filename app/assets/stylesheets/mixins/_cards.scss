@@ -1,0 +1,150 @@
+@mixin card-common {
+  word-wrap: break-word;
+  @include padding(0);
+
+  &__button_solid {
+    @include button-solid(map-get($theme_colors, primary), white);
+  }
+
+  &__button_outline {
+    @include button-outline(map-get($theme_colors, primary));
+  }
+}
+
+@mixin card-header {
+  background-color: $gray-10;
+  font-size: 85%;
+  line-height: 1.5;
+  text-align: center;
+  @include margin(0);
+  @include padding(.5em);
+  @include border-width(1px);
+  @include border-style(solid);
+  @include border-color($gray-40);
+  @include border-top-radius(5px);
+
+  p {
+    @include margin(0);
+  }
+
+  a {
+    color: map-get($theme_colors, primary);
+
+    &:hover {
+      color: darken(map-get($theme_colors, primary), 10%);
+      text-decoration: none;
+    }
+  }
+}
+
+@mixin card-body {
+  background-color: white;
+  @include padding($mid-spacing);
+
+  @media screen and (min-width: $M) {
+    @include padding($base-spacing);
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  a {
+    color: map-get($theme_colors, primary);
+
+    &:hover {
+      color: darken(map-get($theme_colors, primary), 10%);
+      text-decoration: none;
+    }
+  }
+}
+
+@mixin card-footer {
+  background-color: $gray-20;
+  font-size: 85%;
+  line-height: 1.5;
+  text-align: center;
+  @include margin(0);
+  @include padding($small-spacing);
+  @include border-width(1px);
+  @include border-style(solid);
+  @include border-color($gray-40);
+  @include border-bottom-radius(5px);
+
+  p {
+    @include margin(0);
+  }
+
+  a {
+    color: map-get($theme_colors, primary);
+
+    &:hover {
+      color: darken(map-get($theme_colors, primary), 10%);
+      text-decoration: none;
+    }
+  }
+}
+
+@mixin card-plain {
+  @include card-common;
+
+  &__card-body_rounded {
+    @include card-body;
+    @include border-width(1px);
+    @include border-style(solid);
+    @include border-color($gray-40);
+    @include border-top-radius(5px);
+    @include border-bottom-radius(5px);
+  }
+}
+
+@mixin card-with-header {
+  @include card-common;
+
+  &__card-header {
+    @include card-header;
+  }
+
+  &__card-body_rounded-bottom {
+    @include card-body;
+    @include border-width(null 1px 1px 1px);
+    @include border-style(null solid solid solid);
+    @include border-color(null $gray-40 $gray-40 $gray-40);
+    @include border-bottom-radius(5px);
+  }
+}
+
+@mixin card-with-footer {
+  @include card-common;
+
+  &__card-body_rounded-top {
+    @include card-body;
+    @include border-width(1px 1px null 1px);
+    @include border-style(solid solid null solid);
+    @include border-color($gray-40 $gray-40 null $gray-40);
+    @include border-top-radius(5px);
+  }
+
+  &__card-footer {
+    @include card-footer;
+  }
+}
+
+@mixin card-with-header-and-footer {
+  @include card-common;
+
+  &__card-header {
+    @include card-header;
+  }
+
+  &__card-body_not-rounded {
+    @include card-body;
+    @include border-width(null 1px null 1px);
+    @include border-style(null solid null solid);
+    @include border-color(null $gray-40 null $gray-40);
+  }
+
+  &__card-footer {
+    @include card-footer;
+  }
+}
