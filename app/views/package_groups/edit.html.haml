@@ -1,6 +1,4 @@
-.card.mt-2
-  .card-body
-    .btn-group
-      = button_to 'Package Index', package_groups_path, method: 'get', class: 'btn btn-outline-primary btn-lg'
-    %hr
+.PackageGroupCard
+  .PackageGroupCard__card-body_rounded
+    %h3 Edit Package Group
     = render 'form'

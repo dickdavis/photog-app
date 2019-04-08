@@ -49,7 +49,7 @@
 .PackageGroupCard {
   @include card-plain;
   width: 97%;
-  margin: auto;
+  @include margin($base-spacing auto null auto);
 
   @media screen and (min-width: $M) {
     width: 75%;

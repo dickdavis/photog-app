@@ -7,4 +7,5 @@
       = f.label :description
       = f.text_area :description, class: 'form-control', placeholder: 'e.g. Capture one of your most important life moments. From first look to flower toss, your big day is covered. Choose the package that provides the coverage that you need.'
     .form-action
-      = f.submit 'Save', id: 'package-group-submit'
+      = f.submit 'Save', class: 'PackageGroupCard__button_solid'
+      %input{ value: 'Back', type: 'button', method: 'get', class: 'PackageGroupCard__button_outline', onclick: 'history.back()'}
