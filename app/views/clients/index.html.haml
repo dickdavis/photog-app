@@ -11,11 +11,11 @@
         .ClientsCard__card-header
           .ClientsIconPanel
             = link_to client_path(client), class: 'ClientsIconPanel__icon-link'  do
-              %i{ class: 'fa fa-eye fa-2x ClientsIconPanel__icon-link_view', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'View this client','aria-hidden': 'true' }
+              %i{ class: 'fa fa-eye fa-2x ClientsIconPanel__icon-link_view', title: 'View this client' }
             = link_to edit_client_path(client), class: 'ClientsIconPanel__icon-link' do
-              %i{ class: 'fa fa-pencil fa-2x ClientsIconPanel__icon-link_edit', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Edit this client', 'aria-hidden': 'true' }
-            = link_to client_path(client), method: 'delete', class: 'ClientsIconPanel__icon-link', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Delete this client', data: { confirm: 'Are you sure?' } do
-              %i{ class: 'fa fa-trash fa-2x ClientsIconPanel__icon-link_delete', 'aria-hidden': 'true' }
+              %i{ class: 'fa fa-pencil fa-2x ClientsIconPanel__icon-link_edit', title: 'Edit this client' }
+            = link_to client_path(client), method: 'delete', class: 'ClientsIconPanel__icon-link', data: { confirm: 'Are you sure?' } do
+              %i{ class: 'fa fa-trash fa-2x ClientsIconPanel__icon-link_delete', title: 'Delete this client' }
         .ClientsCard__card-body_rounded-bottom
           %h3= "#{client.first_name} #{client.last_name}"
           %p.text-centered= client.email

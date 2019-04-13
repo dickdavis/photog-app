@@ -7,9 +7,9 @@
       .PackageGroupsContainer__callout.PackageGroupsHero
         .PackageGroupsIconPanel
           = link_to edit_package_group_path(pg), class: 'PackageGroupsIconPanel__icon-link' do
-            %i{ class: 'fa fa-pencil fa-2x PackageGroupsIconPanel__icon-link_edit', title: 'Edit this package group' }
+            %i{ class: 'fa fa-pencil fa-2x PackageGroupsIconPanel__icon-link_edit', title: I18n.t('pages.package_groups.index.icon-panel.view'), 'aria-hidden': 'true' }
           = link_to package_group_path(pg), class: 'PackageGroupsIconPanel__icon-link', method: 'delete', data: { confirm: 'Are you sure?' } do
-            %i{ class: 'fa fa-trash fa-2x PackageGroupsIconPanel__icon-link_delete', title: 'Delete this package group' }
+            %i{ class: 'fa fa-trash fa-2x PackageGroupsIconPanel__icon-link_delete', title: I18n.t('pages.package_groups.index.icon-panel.delete'), 'aria-hidden': 'true' }
         %h1.PackageGroupsHero__heading= pg.name
         %p.PackageGroupsHero__lead
           - if pg.description != ''
@@ -18,19 +18,19 @@
       - if pg.packages.count.zero?
         .PackageGroupsContainer__grid-item_single.PackageGroupsCard
           .PackageGroupsCard__card-body_rounded
-            %h3 No packages exist for package group yet.
-            %p.text-centered Split similar pricing packages up according to cost, duration, and more. Packages are ordered from left-to-right by total package cost, ascending. Use the 'Create Package' button to start adding packages in now.
+            %h3= t('pages.packages.index.messages.no-packages.heading')
+            %p.text-centered= t('pages.packages.index.messages.no-packages.text')
       - elsif (pg.packages.count % 3).zero?
         - pg.packages.order(total_cost: :asc).each do |package|
           .PackageGroupsContainer__grid-item_triple.PackagesCard
             .PackagesCard__card-header
               .PackagesIconPanel
                 = link_to package_group_package_path(pg, package), class: 'PackagesIconPanel__icon-link'  do
-                  %i{ class: 'fa fa-eye fa-2x PackagesIconPanel__icon-link_view', title: 'View this package' }
+                  %i{ class: 'fa fa-eye fa-2x PackagesIconPanel__icon-link_view', title: I18n.t('pages.packages.index.icon-panel.view') }
                 = link_to edit_package_group_package_path(pg, package), class: 'PackagesIconPanel__icon-link' do
-                  %i{ class: 'fa fa-pencil fa-2x PackagesIconPanel__icon-link_edit', title: 'Edit this package' }
+                  %i{ class: 'fa fa-pencil fa-2x PackagesIconPanel__icon-link_edit', title: I18n.t('pages.packages.index.icon-panel.edit') }
                 = link_to package_group_package_path(pg, package), class: 'PackagesIconPanel__icon-link', method: 'delete', data: { confirm: 'Are you sure?' } do
-                  %i{ class: 'fa fa-trash fa-2x PackagesIconPanel__icon-link_delete', title: 'Delete this package' }
+                  %i{ class: 'fa fa-trash fa-2x PackagesIconPanel__icon-link_delete', title: I18n.t('pages.packages.index.icon-panel.delete') }
             .PackagesCard__card-body_rounded-bottom
               %h3= package.name
               %p.text-centered= package.description
@@ -95,5 +95,5 @@
   - else
     .PackageGroupsCard
       .PackageGroupsCard__card-body
-        %h3 No package groups exist yet.
-        %p.text-centered Package groups are small groupings of 2-4 pricing packages. Packages can be grouped by the photographer according to subject areas such as Maternity, Wedding, Family, etc. Create your first package group using the 'Create Package Group' button near the middle of the screen at the top of the page.
+        %h3= t('pages.package-groups.index.messages.no-package-groups.heading')
+        %p.text-centered= t('pages.package-groups.index.messages.no-package-groups.text')

@@ -68,6 +68,37 @@ en:
         icon-panel:
           edit: "Edit this Booking"
           delete: "Delete this Booking"
+    package_groups:
+      index:
+        title: "Pricing"
+        action-ribbon:
+          create: "Create Package Group"
+        icon-panel:
+          view: "View this Package Group"
+          edit: "Edit this Package Group"
+          delete: "Delete this Package Group"
+        message:
+          no-package-groups:
+            heading: "No package groups exist yet."
+            text: "Package groups are small groupings of 2-4 pricing packages. Packages can be grouped by the photographer according to subject areas such as Maternity, Wedding, Family, etc. Create your first package group using the 'Create Package Group' button near the middle of the screen at the top of the page."
+    packages:
+      index:
+        icon-panel:
+          view: "View this Package"
+          edit: "Edit this Package"
+          delete: "Delete this Package"
+        message:
+          no-packages:
+            heading: "No packages exist for package group yet."
+            text: "Split similar pricing packages up according to cost, duration, and more. Packages are ordered from left-to-right by total package cost, ascending. Use the 'Create Package' button to start adding packages in now."
+      new:
+        title: "New Package"
+      edit:
+        title: "Edit Package"
+      show:
+        icon-panel:
+          edit: "Edit this Package"
+          delete: "Delete this Package"
   models:
     booking:
       fields:
