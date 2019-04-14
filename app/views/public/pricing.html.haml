@@ -7,92 +7,17 @@
           - if pg.description != ''
             = pg.description
       - if pg.packages.count.zero?
-        .PackageGroupsContainer__grid-item_single.PackageGroupsCard
-          .PackageGroupsCard__card-body_rounded
-            %h3 Pricing for this group has not been published by the business yet.
-            %p Check back later; this page is under construction.
-      - elsif (pg.packages.count % 3).zero?
-        - pg.packages.order(total_cost: :asc).each do |package|
-          .PackageGroupsContainer__grid-item_triple.PackagesCard
-            .PackagesCard__card-body_rounded
-              %h3= package.name
-              %p= package.description
-              %p
-                %span.text-muted Duration:
-                = package.duration
-                %span.text-muted mins
-              %p
-                %span.text-muted Total cost:
-                = number_to_currency(package.total_cost, unit: '$')
-              %p
-                %span.text-muted Retainer fee:
-                = number_to_currency(package.retainer_fee, unit: '$')
-      - elsif (pg.packages.count % 2).zero?
-        - pg.packages.order(total_cost: :asc).each do |package|
-          .PackageGroupsContainer__grid-item_double.PackagesCard
-            .PackagesCard__card-body_rounded
-              %h3= package.name
-              %p= package.description
-              %p
-                %span.text-muted Duration:
-                = package.duration
-                %span.text-muted mins
-              %p
-                %span.text-muted Total cost:
-                = number_to_currency(package.total_cost, unit: '$')
-              %p
-                %span.text-muted Retainer fee:
-                = number_to_currency(package.retainer_fee, unit: '$')
-      - elsif pg.packages.count == 1
-        - pg.packages.order(total_cost: :asc).each do |package|
-          .PackageGroupsContainer__grid-item_single.PackagesCard
-            .PackagesCard__card-body_rounded
-              %h3= package.name
-              %p= package.description
-              %p
-                %span.text-muted Duration:
-                = package.duration
-                %span.text-muted mins
-              %p
-                %span.text-muted Total cost:
-                = number_to_currency(package.total_cost, unit: '$')
-              %p
-                %span.text-muted Retainer fee:
-                = number_to_currency(package.retainer_fee, unit: '$')
-      - elsif pg.packages.count == 1
-        - pg.packages.order(total_cost: :asc).each do |package|
-          .PackageGroupsContainer__grid-item_single.PackageGroupsCard
-            .PackagesCard__card-body_rounded
-              %h3= package.name
-              %p= package.description
-              %p
-                %span.text-muted Duration:
-                = package.duration
-                %span.text-muted mins
-              %p
-                %span.text-muted Total cost:
-                = number_to_currency(package.total_cost, unit: '$')
-              %p
-                %span.text-muted Retainer fee:
-                = number_to_currency(package.retainer_fee, unit: '$')
+        .PackageGroupsContainer__grid-item_single.PackageGroupCard
+          .PackageGroupCard__card-body_rounded
+            %h3= I18n.t('pages.public.pricing.messages.no-packages.heading')
+            %p= I18n.t('pages.public.pricing.messages.no-packages.text')
       - else
         - pg.packages.order(total_cost: :asc).each do |package|
-          .PackageGroupsContainer__grid-item.PackageGroupsCard
+          %div{ class: "PackageGroupsContainer__grid-item#{element_for_pg_item(pg.packages.count)} PackageGroupCard" }
             .PackagesCard__card-body_rounded
-              %h3= package.name
-              %p= package.description
-              %p
-                %span.text-muted Duration:
-                = package.duration
-                %span.text-muted mins
-              %p
-                %span.text-muted Total cost:
-                = number_to_currency(package.total_cost, unit: '$')
-              %p
-                %span.text-muted Retainer fee:
-                = number_to_currency(package.retainer_fee, unit: '$')
+              = render partial: 'packages/package_details', package: package
   - else
-    .PackageGroupsContainer__grid-item_single.PackageGroupsCard
-      .PackageGroupsCard__card-body_rounded
-        %h3 Pricing has not been published by the business yet.
-        %p Check back later; this page is under construction.
+    .PackageGroupsContainer__grid-item_single.PackageGroupCard
+      .PackageGroupCard__card-body_rounded
+        %h3= I18n.t('pages.public.pricing.messages.no-package-groups.heading')
+        %p= I18n.t('pages.public.pricing.messages.no-package-groups.text')

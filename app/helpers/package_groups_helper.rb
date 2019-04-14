@@ -8,4 +8,11 @@
 #
 # This controller provides helper methods for package groups views.
 module PackageGroupsHelper
+  def element_for_pg_item(count)
+    return '_triple' if (count % 3).zero?
+    return '_double' if (count % 2).zero?
+    return '_single' if (count % 1).zero?
+
+    ''
+  end
 end

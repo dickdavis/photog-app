@@ -44,6 +44,15 @@ en:
       create: "Your account was successfully created."
       update: "User information was successfully updated."
   pages:
+    public:
+      pricing:
+        messages:
+          no-packages:
+            heading: "Pricing for this group has not been published by the business yet."
+            text: "Check back later; this page is under construction."
+          no-package-groups:
+            heading: "Pricing has not been published by the business yet."
+            text: "Check back later; this page is under construction."
     bookings:
       index:
         title: "Bookings"
@@ -77,17 +86,19 @@ en:
           view: "View this Package Group"
           edit: "Edit this Package Group"
           delete: "Delete this Package Group"
-        message:
+        messages:
           no-package-groups:
             heading: "No package groups exist yet."
             text: "Package groups are small groupings of 2-4 pricing packages. Packages can be grouped by the photographer according to subject areas such as Maternity, Wedding, Family, etc. Create your first package group using the 'Create Package Group' button near the middle of the screen at the top of the page."
+        other:
+          create-package: "Create Package"
     packages:
       index:
         icon-panel:
           view: "View this Package"
           edit: "Edit this Package"
           delete: "Delete this Package"
-        message:
+        messages:
           no-packages:
             heading: "No packages exist for package group yet."
             text: "Split similar pricing packages up according to cost, duration, and more. Packages are ordered from left-to-right by total package cost, ascending. Use the 'Create Package' button to start adding packages in now."
@@ -108,7 +119,14 @@ en:
         retainer_fee: "Retainer Fee"
     booking_package:
       fields:
-        duration: "Duration"
         name: "Package"
+        duration: "Duration"
+        total_cost: "Total Cost"
+        retainer_fee: "Retainer Fee"
+    package:
+      fields:
+        name: "Package"
+        description: "Description"
+        duration: "Duration"
         total_cost: "Total Cost"
         retainer_fee: "Retainer Fee"

@@ -1,0 +1,12 @@
+%h3= package.name
+%p= package.description
+%p
+  %span.text-muted= I18n.t('models.package.fields.duration')
+  = package.duration
+  %span.text-muted mins
+%p
+  %span.text-muted= I18n.t('models.package.fields.total_cost')
+  = number_to_currency(package.total_cost, unit: '$')
+%p
+  %span.text-muted= I18n.t('models.package.fields.retainer_fee')
+  = number_to_currency(package.retainer_fee, unit: '$')
