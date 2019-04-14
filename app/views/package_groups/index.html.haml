@@ -18,8 +18,8 @@
       - if pg.packages.count.zero?
         .PackageGroupsContainer__grid-item_single.PackageGroupsCard
           .PackageGroupsCard__card-body_rounded
-            %h3= I18n.t('pages.packages.index.message.no-packages.heading')
-            %p.text-centered= I18n.t('pages.packages.index.message.no-packages.text')
+            %h3= I18n.t('pages.packages.index.messages.no-packages.heading')
+            %p.text-centered= I18n.t('pages.packages.index.messages.no-packages.text')
       - else
         - pg.packages.order(total_cost: :asc).each do |package|
           %div{ class: "PackageGroupsContainer__grid-item#{element_for_pg_item(pg.packages.count)} PackageGroupCard" }
@@ -36,5 +36,5 @@
   - else
     .PackageGroupsContainer__grid-item_single.PackageGroupCard
       .PackageGroupsCard__card-body_rounded
-        %h3= t('pages.package_groups.index.message.no-package-groups.heading')
-        %p.text-centered= t('pages.package_groups.index.message.no-package-groups.text')
+        %h3= t('pages.package_groups.index.messages.no-package-groups.heading')
+        %p.text-centered= t('pages.package_groups.index.messages.no-package-groups.text')
