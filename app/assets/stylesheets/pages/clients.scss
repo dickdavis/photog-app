@@ -17,15 +17,17 @@
   &__card-header {
     .ClientsIconPanel {
       text-align: right;
+
       @include icon-panel;
     }
   }
 }
 
 .ClientCard {
+  width: 97%;
+
   @include card-with-header-and-footer;
   @include card-plain;
-  width: 97%;
   @include margin($base-spacing auto null auto);
 
   @media screen and (min-width: $M) {
@@ -39,13 +41,15 @@
   &__card-header {
     .ClientIconPanel {
       text-align: right;
+
       @include icon-panel;
     }
   }
 
   &__button-group {
-    @include button-group;
     width: 100%;
     justify-content: center;
+
+    @include button-group;
   }
 }

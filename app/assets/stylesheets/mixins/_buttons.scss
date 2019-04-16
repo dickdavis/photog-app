@@ -15,6 +15,7 @@
   transition: background-color $base-duration $base-timing;
   user-select: none;
   vertical-align: middle;
+
   @include border-width(2px);
   @include border-style(solid);
   @include border-color($_btn-background-color);

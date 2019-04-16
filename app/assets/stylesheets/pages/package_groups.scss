@@ -5,7 +5,10 @@
 .PackageGroupsContainer {
   @include default-grid;
 
-  &__grid-item_triple, &__grid-item_double, &__grid-item_single, &__grid-item {
+  &__grid-item_triple,
+  &__grid-item_double,
+  &__grid-item_single,
+  &__grid-item {
     p:nth-child(2) {
       text-align: center;
     }
@@ -13,7 +16,6 @@
 
   &__grid-item_triple {
     p:nth-child(2) {
-
       @media screen and (min-width: $M) {
         min-height: 165px;
       }
@@ -26,7 +28,6 @@
 
   &__grid-item_double {
     p:nth-child(2) {
-
       @media screen and (min-width: $M) {
         min-height: 165px;
       }
@@ -47,8 +48,9 @@
 }
 
 .PackageGroupCard {
-  @include card-plain;
   width: 97%;
+
+  @include card-plain;
   @include margin($base-spacing auto null auto);
 
   @media screen and (min-width: $M) {
@@ -61,7 +63,8 @@
 }
 
 .PackageGroupsIconPanel {
+  text-align: right;
+
   @include icon-panel;
   @include margin(null null $mid-spacing null);
-  text-align: right;
 }

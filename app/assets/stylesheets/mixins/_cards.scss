@@ -1,5 +1,6 @@
 @mixin card-common {
   word-wrap: break-word;
+
   @include padding(0);
 
   &__button_solid {
@@ -16,8 +17,9 @@
   font-size: 85%;
   line-height: 1.5;
   text-align: center;
+
   @include margin(0);
-  @include padding(.5em);
+  @include padding(0.5em);
   @include border-width(1px);
   @include border-style(solid);
   @include border-color($gray-40);
@@ -39,6 +41,7 @@
 
 @mixin card-body {
   background-color: white;
+
   @include padding($mid-spacing);
 
   @media screen and (min-width: $M) {
@@ -64,6 +67,7 @@
   font-size: 85%;
   line-height: 1.5;
   text-align: center;
+
   @include margin(0);
   @include padding($small-spacing);
   @include border-width(1px);

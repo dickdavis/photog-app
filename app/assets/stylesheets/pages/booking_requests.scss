@@ -1,6 +1,7 @@
 .BookingRequestCard {
-  @include card-plain;
   width: 97%;
+
+  @include card-plain;
   @include margin($base-spacing auto null auto);
 
   @media screen and (min-width: $M) {

@@ -1,5 +1,5 @@
 function activateMenu () {
-  let toggle = document.getElementById('MushakaNavbar__navbar-toggle')
+  let toggle = document.getElementById('js-navbar-toggle')
   let menu = document.getElementsByClassName('MushakaNavbar__navbar-menu')[0]
 
   toggle.addEventListener('click', toggleMenu)

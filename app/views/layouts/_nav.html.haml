@@ -1,27 +1,27 @@
 %nav.MushakaNavbar
   .MushakaNavbar__navbar-header
-    %a{ href: '#', id: 'MushakaNavbar__navbar-toggle' }
+    %a{ href: '#', id: 'js-navbar-toggle', class: 'MushakaNavbar__navbar-toggle' }
       = icon 'bars'
     %span.MushakaNavbar__navbar-brand PhotogApp
   .MushakaNavbar__navbar-menu
     %ul
       - if signed_in?
         %li
-          = link_to I18n.t('navigation.auth.dashboard'), dashboard_path
+          = link_to I18n.t('navigation.auth.dashboard'), dashboard_path, class: 'MushakaNavbar__navbar-link'
         %li
-          = link_to I18n.t('navigation.auth.bookings'), bookings_path
+          = link_to I18n.t('navigation.auth.bookings'), bookings_path, class: 'MushakaNavbar__navbar-link'
         %li
-          = link_to I18n.t('navigation.auth.clients'), clients_path
+          = link_to I18n.t('navigation.auth.clients'), clients_path, class: 'MushakaNavbar__navbar-link'
         %li
-          = link_to I18n.t('navigation.auth.pricing'), package_groups_path
+          = link_to I18n.t('navigation.auth.pricing'), package_groups_path, class: 'MushakaNavbar__navbar-link'
         %li
-          = link_to I18n.t('navigation.auth.sign_out'), sign_out_path, method: :delete
+          = link_to I18n.t('navigation.auth.sign_out'), sign_out_path, method: :delete, class: 'MushakaNavbar__navbar-link'
       - else
         %li
-          = link_to I18n.t('navigation.public.home'), root_path
+          = link_to I18n.t('navigation.public.home'), root_path, class: 'MushakaNavbar__navbar-link'
         %li
-          = link_to I18n.t('navigation.public.pricing'), pricing_path
+          = link_to I18n.t('navigation.public.pricing'), pricing_path, class: 'MushakaNavbar__navbar-link'
         %li
-          = link_to I18n.t('navigation.public.book_now'), new_booking_request_path
+          = link_to I18n.t('navigation.public.book_now'), new_booking_request_path, class: 'MushakaNavbar__navbar-link'
         %li
-          = link_to I18n.t('navigation.public.sign_in'), sign_in_path
+          = link_to I18n.t('navigation.public.sign_in'), sign_in_path, class: 'MushakaNavbar__navbar-link'

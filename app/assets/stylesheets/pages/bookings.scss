@@ -12,17 +12,18 @@
 
   &__card-header {
     .BookingsIconPanel {
-      @include icon-panel;
-
       text-align: right;
+
+      @include icon-panel;
     }
   }
 }
 
 .BookingCard {
+  width: 97%;
+
   @include card-plain;
   @include card-with-header-and-footer;
-  width: 97%;
   @include margin($base-spacing auto null auto);
 
   @media screen and (min-width: $M) {
@@ -35,9 +36,9 @@
 
   &__card-header {
     .BookingIconPanel {
-      @include icon-panel;
-
       text-align: right;
+
+      @include icon-panel;
     }
   }
 }

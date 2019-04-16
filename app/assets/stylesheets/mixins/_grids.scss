@@ -13,11 +13,11 @@ $grid-large: (
     @include margin(null null 20px null);
     @include grid-column(12 of 12);
 
-    @include grid-media($grid-medium){
+    @include grid-media($grid-medium) {
       @include grid-column(6 of 12);
     }
 
-    @include grid-media($grid-large){
+    @include grid-media($grid-large) {
       @include grid-column(4 of 12);
     }
   }
@@ -26,7 +26,7 @@ $grid-large: (
     @include margin(null null 20px null);
     @include grid-column(12 of 12);
 
-    @include grid-media($grid-medium){
+    @include grid-media($grid-medium) {
       @include grid-column(6 of 12);
       @include grid-shift(3);
     }
@@ -36,7 +36,7 @@ $grid-large: (
     @include margin(null null 20px null);
     @include grid-column(12 of 12);
 
-    @include grid-media($grid-medium){
+    @include grid-media($grid-medium) {
       @include grid-column(6 of 12);
     }
   }
@@ -45,7 +45,7 @@ $grid-large: (
     @include margin(null null 20px null);
     @include grid-column(12 of 12);
 
-    @include grid-media($grid-medium){
+    @include grid-media($grid-medium) {
       @include grid-column(4 of 12);
     }
   }

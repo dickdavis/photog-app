@@ -1,14 +1,15 @@
 @mixin hero-regular {
+  text-align: center;
+
   @include margin(null null 12px null);
   @include padding($base-spacing);
-  text-align: center;
 
   @media screen and (min-width: $M) {
     @include padding($super-spacing);
   }
 
-  &__heading, &__lead {
-  }
+  // &__heading, &__lead {
+  // }
 
   &__heading {
     font-size: 300%;

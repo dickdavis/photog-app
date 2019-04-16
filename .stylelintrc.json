@@ -1,0 +1,16 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "rules": {
+    "scss/at-mixin-argumentless-call-parentheses": "never",
+    "at-rule-no-unknown": [ true, {
+      "ignoreAtRules": [
+        "extends",
+        "include",
+        "mixin"
+      ]
+    }]
+  }
+}
